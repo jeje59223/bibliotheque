@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+
+{% block titre %}Page Listant Les Livres{% endblock %}
+
+{% block contenu %}
+{% if message|length > 0 %}
+    <div class="alert alert-{{message.type}}" role="alert">
+        {{ message.contenu }}
+    </div>
+{% endif %}
+<table class="table text-center monTableau P_bgColorGrey table-dark text-dark" id="tableauLivres">
+    <thead>
+        <tr class="table-dark">
+            <th class="align-middle">Images</th>
+            <th class="align-middle">Titre du livre</th>
+            <th class="align-middle">Auteur</th>
+            <th class="align-middle">Nombre de pages</th>
+            <th class="align-middle" colspan="3">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td class="align-middle"><img src="images/{{ livre.image }}" width="60px"></td>
+                <td class="align-middle"><a href="/livres/{{livre._id}}">{{ livre.nom }}</a></td>
+                <td class="align-middle"><a href="/auteurs/{{livre.auteur._id}}">{{ livre.auteur.nom }} - {{ livre.auteur.prenom }}</a></td>
+                <td class="align-middle">{{ livre.pages }}</td>
+                <td class="align-middle"><a href="/livres/modification/{{livre._id}}"class="btn btn-warning"><i class="fas fa-pencil-alt"></i>  Modifier</a></td>
+                <td class="align-middle">
+                    <form method="POST" action="/livres/delete/{{ livre._id }}" onSubmit="return confirm('Voulez-vous vraiment supprimer le livre ?');">
+                        <button class="btn btn-danger" type="submit"><i class="far fa-trash-alt"></i>  Supprimer</button>
+                    </form>
+                </td>
+                <td class="align-middle"><a href="/livres/{{livre._id}}"class="btn btn-primary"><i class="far fa-eye"></i>  Détails</a></td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>                    
+</table>
+<a href="#ajoutForm"><button href="" class="btn btn-success w-100" onClick="afficherFormulaire()" id="faireApparaitreFormAjout"><i class="fas fa-plus-circle"></i>  Ajouter</button></a>
+<form id="ajoutForm" class="d-none rounded" method="POST" action="" enctype="multipart/form-data">
+    <fieldset class="mt-4 mb-4">
+        <legend class="text-center">Ajout d'un livre</legend>
+        <div class="form-group m-2">
+            <label for="titre">Titre</label>
+            <input type="text" class="form-control" id="titre" name="titre" required>
+        </div>
+        <div class="form-group m-2">
+            <label for="auteur" class="m-2">Auteur</label>
+            <select class="form-control" id="auteur" name="auteur">
+                {% for auteur in auteurs %}
+                    <option value="{{ auteur._id }}">
+                        {{ auteur.prenom }} - {{ auteur.nom }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group m-2">
+            <label for="pages">Pages</label>
+            <input type="number" class="form-control" id="pages" name="pages" required>
+        </div>
+        <div class="form-group m-2">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        </div>
+        <div class="form-group m-2 mb-3">
+            <label for="image">Image</label>
+            <input type="file"class="form-control-file" id="image" name="image" required>
+        </div>
+        <div class="boutonAjoutLivre">
+        <button class="btn btn-primary" type="submit" id="btnFormAjout">Valider</button>
+        </div>
+    </fieldset>
+</form>
+<script src="/javascript/ajoutLivre.js"></script>
+{% endblock %}

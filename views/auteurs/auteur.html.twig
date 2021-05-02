@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %}
+
+{% block titre %}Auteur : {{ auteur.nom }} - {{ auteur.prenom }}{% endblock %}
+
+{% block contenu %}   
+    {% if isModification %}
+        <form id="ajoutForm" class="rounded" method="POST" action="/auteurs/modificationServer">
+            <fieldset class="mt-4 mb-4">
+                <legend class="text-center">Modification d'un Auteur</legend>
+                <div class="form-group m-2">
+                    <label for="titre">Prénom</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom" value="{{ auteur.prenom }}" required>
+                </div>
+                <div class="form-group m-2">
+                    <label for="titre">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom" value="{{ auteur.nom }}" required>
+                </div>        
+                <div class="form-group m-2">
+                    <label for="pages">Age</label>
+                    <input type="number" class="form-control" id="age" name="age" value="{{ auteur.age }}" required>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="sexe" name="sexe"
+                    {% if auteur.sexe %} checked {% endif %}
+                    >
+                    <label class="form-check-label" for="exampleCheck1">Homme</label>
+                </div>        
+                <div class="boutonAjoutLivre">
+                <button class="btn btn-primary" type="submit" id="btnFormAjout">Valider</button>
+                </div>
+                <input type="hidden" name="identifiant" value="{{ auteur._id }}" >
+            </fieldset>
+        </form>
+    {% else %}
+    <div class="auteur rounded text-center" style="height: 250px; font-size: 35px" id="prezAuteur">
+        <h2>Nom : {{ auteur.nom }}</h2>
+        <h2>Prénom : {{ auteur.prenom }}</h2>
+        <div>Age : {{ auteur.age }}</div>
+            <div> Sexe : 
+                {% if auteur.sexe %}
+                    Homme
+                {% else %}
+                    Femme
+                {% endif %}
+            </div>        
+            
+        </div>
+    </div>
+    <div class="container mb-5">
+        <h1 class="text-center text-white border border-white rounded P_bgColorBlue p-2 mt-3">Livres</h2>
+        <div class="row m-auto justify-content-center">
+            {% for livre in auteur.livres %}            
+            <div class="col-xs-12-md-4 align-self-center">
+                <div class="card m-2 P_bgColorGrey text-white text-center border border-white" style="width: 22rem; max-height: 600px">
+                    <img src="/images/{{ livre.image }}" class="card-img-top" style="height: 300px">
+                    <div class="card-body" id="cardAuteur" style="height: 300px">                
+                        <h5 class="card-title">{{ livre.nom }}</h5>
+                        <p class="card-text">Nombres de pages : {{ livre.pages }}</p>                            
+                    </div>
+                    <div class="card-footer text-muted P_bgColorBlue text-center">
+                    <a href="/livres/{{ livre._id }}" class="btn btn-primary">Détails</a>
+                    </div>
+                </div>
+            </div>        
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+
+        {# <div class="col-6">
+            <div class="row m-3 border border-dark" style="height: 200px;">
+                <div class="col-6">
+                    <img src="/images/{{ livre.image }}" width="150px">
+                </div>
+                <div class="col-6">
+                    <div> Titre : <a href="/livres/{{ livre._id }}">{{ livre.nom }}</a></div>
+                    <div> Nombres de pages : {{ livre.pages }}</div>            
+                </div>
+            </div>
+        </div>             #}

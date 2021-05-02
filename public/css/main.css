@@ -1,0 +1,132 @@
+.P_bgColorBlue{
+    background-color: rgb(103,172,218);
+}
+
+.P_bgColorGrey{
+    background-color: grey;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sigmar One', cursive;
+    text-transform: uppercase;
+}
+
+.accueil{
+    font-size: 70px !important;
+    text-align: center !important;
+    background-color: #dfe6e9;
+    margin-top: auto;
+    opacity: 90%;
+}
+
+form, table{
+    background-color: #dfe6e9 !important;
+    opacity: 90%;    
+}
+
+.livre{
+    background-color: #dfe6e9;
+    opacity: 90%;
+    padding: 5px;
+}
+
+.boutonAjoutLivre{
+    text-align: center;
+}
+.boutonModification{
+    text-align: center;
+}
+
+#btnFormAjout{
+    width: 80%;
+    margin-bottom: 15px;
+}
+
+legend{
+    font-size: 35px;
+    font-style: initial;
+    text-transform: uppercase;
+    font-family: 'Sigmar One', cursive;
+}
+
+#btnModif{
+    width: 80%;
+    margin-bottom: 15px;
+}
+
+.container{
+    margin-top: 15px !important;
+}
+
+body{
+    background-image: url("../images/livres.jpg");    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-weight: bolder;
+}
+
+.form-control{
+    color: white;
+    background-color: grey;
+}
+
+#modifImage{
+    width: 80%;
+}
+
+#formModificationImage{
+    margin-top: 4rem !important;
+    margin-bottom: 65px !important;
+    padding: 25px !important;
+}
+
+.auteur{
+    background-color: #dfe6e9;
+    opacity: 80%;
+}
+
+h1{
+    margin-top: 85px;
+}
+
+#faireApparaitreFormAjout{
+    margin-bottom: 65px;
+}
+
+#tableauLivres{
+    margin: 0px;
+}
+
+#updateImage{
+    margin-bottom: 60px;
+}
+
+#ajoutForm{
+    margin-bottom: 80px;
+}
+
+/* .cardAuteur{
+    scroll-behavior: smooth;
+    height: 25px;
+} */
+#cardAuteur {
+    
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+  }
+
+  #prezAuteur{
+      background-image: url('../images/notebook.jpg') !important;
+      background-size: cover;
+      opacity: unset;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 10px black;
+      padding-top: 30px;
+  }
